@@ -1,0 +1,145 @@
+---
+title: "DeanDilema"
+author: "RAJAT"
+output: html_document
+---
+
+```{r include=FALSE}
+library("vcd", lib.loc="~/R/win-library/3.4")
+library("psych", lib.loc="~/R/win-library/3.4")
+library("rmarkdown", lib.loc="~/R/win-library/3.4")
+library("gplots", lib.loc="~/R/win-library/3.4")
+library("gtable", lib.loc="~/R/win-library/3.4")
+library("lattice", lib.loc="C:/Program Files/R/R-3.4.2/library")
+library("randomForest", lib.loc="~/R/win-library/3.4")
+library("dplyr", lib.loc="~/R/win-library/3.4")
+library("ggplot2", lib.loc="~/R/win-library/3.4")
+library("ggthemes", lib.loc="~/R/win-library/3.4")
+library("plyr", lib.loc="~/R/win-library/3.4")
+library("car", lib.loc="~/R/win-library/3.4")
+```
+Reading the Dean's Dilemma case study dataset into a data frame for futher investigation and insights.
+```{r}
+dd <- read.csv(paste("DeansDilemmaData.csv",sep=""))
+dd
+attach(dd)
+
+```
+Now having a further look into the Dataset by calculating the summary statistics for important variables.
+```{r}
+summary(dd$Percent_SSC)
+
+```
+```{r}
+summary(dd$Percent_HSC)
+```
+```{r}
+summary(dd$Percent_Degree)
+```
+```{r}
+describe(dd$Salary)
+```
+
+lets use R to calculate the median salary of all the students in the data sample
+```{r}
+median(dd$Salary)
+```
+Use R to calculate the percentage of students who were placed, correct to 2 decimal places.
+```{r}
+mytable <- table(dd$Placement)
+round(prop.table(mytable)*100,3)
+summary(dd$Placement)
+100*mean(dd$Placement_B)
+
+
+```
+
+Lets  use R to create a dataframe called placed, that contains a subset of only those students who were successfully placed. 
+```{r}
+newdata <- subset(dd,Placement_B=='1',select=c(SlNo,Gender,Percent_SSC,
+Percent_HSC,S.TEST.SCORE,Percent_MBA,Placement,Placement_B,Specialization_MBA,Salary))
+head(newdata)
+#placed <- mba[ which(mba$Placement=='Placed') , ] 
+#View(placed)
+```
+Lets use R to find the  median salary of students who were placed.
+```{r}
+median(newdata$Salary)
+```
+Lets use R to create a table showing the mean salary of males and females, who were placed. 
+```{r}
+aggregate(newdata$Salary,by= list(Gender=newdata$Gender),mean)
+```
+
+Lets use R to generate the following histogram showing a breakup of the MBA performance of the students who were placed
+```{r}
+hist(newdata$Percent_MBA,xlim=c(50,80),ylim=c(0,150),xlab="MBAPercentage",ylab="Count",breaks=3,main="MBA Performance of placed students",col=c("lightblue"))
+
+```
+Lets create a dataframe called notplaced, that contains a subset of only those students who were NOT placed after their MBA.
+```{r}
+notplaced <- subset(dd,Placement_B=='0',select=c(SlNo,Gender,Percent_SSC,
+Percent_HSC,S.TEST.SCORE,Percent_MBA,Placement,Placement_B,Specialization_MBA,Salary))
+head(notplaced)
+```
+Draw two histograms side-by-side, visually comparing the MBA performance of Placed and Not Placed students, as follows:
+
+```{r, warnings=FALSE,fig.height=5,fig.width=9}
+par(mfrow=c(1,2))
+hist(newdata$Percent_MBA,xlim=c(50,80),ylim=c(0,150),xlab="MBAPercentage",
+     ylab="Count",
+     breaks=3,
+     main="MBA Performance of placed students",
+     col=c("lightblue"))
+hist(notplaced$Percent_MBA,xlim=c(50,80),ylim=c(0,150),xlab="MBAPercentage",
+     ylab="Count",
+     breaks=3,
+     main="MBA Performance of placed students",
+     col=c("lightblue"))
+```
+
+
+Lets use R to draw two boxplots, one below the other, comparing the distribution of salaries of males and females who were placed, as follows:
+```{r}
+boxplot( Salary ~ Gender, data= newdata,horizontal=TRUE,yaxt="n",
+        xlab="Salary",ylab="Gender",
+        main="Comparison of Salaries of Male and Females")
+        axis(side=2,at=c(1,2),labels=c("Females","Males"))
+```
+
+Lets create a dataframe called placedET, representing students who were placed after the MBA and who also gave some MBA entrance test before admission into the MBA program. 
+```{r}
+placedET <-  subset(dd,Placement_B=='1' & S.TEST=='1',select=c(SlNo,Gender,Percent_SSC,
+Percent_HSC,S.TEST.SCORE,Percent_MBA,Percentile_ET,Placement,Placement_B,Specialization_MBA,Salary))
+head(placedET)
+```
+
+Drawing a Scatter Plot Matrix for 3 variables -- {Salary, Percent_MBA, Percentile_ET} using the dataframe placedET.
+```{r}
+scatterplot.matrix(formula= ~Salary + Percent_MBA + Percentile_ET,cex=0.6,
+                   data=placedET,diagonal="density")
+```
+```{r include=FALSE}
+# corrgram(store, order=TRUE, lower.panel=panel.shade,
+#  upper.panel=panel.pie, text.panel=panel.txt,
+#  main="Corrogram of Store variables")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
