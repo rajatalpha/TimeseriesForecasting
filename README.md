@@ -3,6 +3,11 @@ This is an R project for studying Time Series Analysis in R
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+links:-
+https://towardsdatascience.com/time-series-forecasting-arima-models-7f221e9eee06
+http://r-statistics.co/Time-Series-Analysis-With-R.html
+
+-------------------------------------------------------------------------------------
       
 During this project we are going to have look into the concept of Time Series Forecasting.We have 
 the sample data set coming from kaggle.
