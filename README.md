@@ -32,8 +32,7 @@ We'll perform the following steps:
 ```{r setup,echo=FALSE}
 knitr::opts_knit$set(root.dir="C:\\Users\\1500202\\Documents\\NEW_R_Scripts")
 ```           
-
-```{r include=FALSE}
+```{r echo=FASLSE}
 library("tseries", lib.loc="~/R/win-library/3.5")
 library("tidyr", lib.loc="~/R/win-library/3.5")
 library("tidyverse", lib.loc="~/R/win-library/3.5")
@@ -43,13 +42,21 @@ library("psych", lib.loc="~/R/win-library/3.5")
 library("rmarkdown", lib.loc="~/R/win-library/3.5")
 library("gplots", lib.loc="~/R/win-library/3.5")
 library("gtable", lib.loc="~/R/win-library/3.5")
-library("lattice", lib.loc="C:/Program Files/R/R-3.4.2/library")
+library("DataCombine", lib.loc="~/R/win-library/3.5")
+library("lattice", lib.loc="C:/Program Files/R/R-3.5.0/library")
 library("randomForest", lib.loc="~/R/win-library/3.5")
 library("dplyr", lib.loc="~/R/win-library/3.5")
 library("ggplot2", lib.loc="~/R/win-library/3.5")
 library("ggthemes", lib.loc="~/R/win-library/3.5")
 library("plyr", lib.loc="~/R/win-library/3.5")
 library("car", lib.loc="~/R/win-library/3.5")
+library("dplyr", lib.loc="~/R/win-library/3.5")
+library("forecast", lib.loc="~/R/win-library/3.5")
+library("gmodels", lib.loc="~/R/win-library/3.5")
+library("knitr", lib.loc="~/R/win-library/3.5")
+library("scales", lib.loc="~/R/win-library/3.5")
+library("mice", lib.loc="~/R/win-library/3.5")
+library("gmodels", lib.loc="~/R/win-library/3.5")
 ```
 
 ```{r}
