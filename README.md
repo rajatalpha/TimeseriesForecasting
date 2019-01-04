@@ -6,6 +6,7 @@ knitr::opts_chunk$set(echo = TRUE)
 links:-
 https://towardsdatascience.com/time-series-forecasting-arima-models-7f221e9eee06
 http://r-statistics.co/Time-Series-Analysis-With-R.html
+https://www.datascience.com/blog/introduction-to-forecasting-with-arima-in-r-learn-data-science-tutorials---Important
 
 -------------------------------------------------------------------------------------
       
