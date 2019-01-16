@@ -4,6 +4,14 @@ This is an R project for studying Time Series Analysis in R
 knitr::opts_chunk$set(echo = TRUE)
 ```
 links:-
+
+***
+https://docs.fresco.me/folder/6851309
+https://talk.fresco.me/global/channel/1409328
+*****
+https://rpubs.com/ryankelly/tsa6
+
+
 https://towardsdatascience.com/time-series-forecasting-arima-models-7f221e9eee06
 http://r-statistics.co/Time-Series-Analysis-With-R.html
 https://www.datascience.com/blog/introduction-to-forecasting-with-arima-in-r-learn-data-science-tutorials---Important
